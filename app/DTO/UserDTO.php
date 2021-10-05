@@ -2,10 +2,10 @@
 
 namespace App\DTO;
 
+use App\Abstracts\DataTransferObjectAbstract;
 use Carbon\Carbon;
-use App\Abstracts\DataTransferObjectJsonable;
 
-class UserDTO extends DataTransferObjectJsonable
+class UserDTO extends DataTransferObjectAbstract
 {
 
     public function __construct(

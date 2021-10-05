@@ -2,9 +2,10 @@
 
 namespace App\DTO;
 
+use App\Abstracts\DataTransferObjectAbstract;
 use JetBrains\PhpStorm\ArrayShape;
 
-class RegistrationDTO implements \App\Interfaces\DataTransferObjectInterface
+class RegistrationDTO extends DataTransferObjectAbstract
 {
     public function __construct(
         public string $name,
@@ -13,7 +14,6 @@ class RegistrationDTO implements \App\Interfaces\DataTransferObjectInterface
         public string $password
     ) {}
 
-    #[ArrayShape(['name' => "string", 'email' => "string", 'phone' => "string", 'password' => "string"])]
     public function toArray(): array
     {
         return [
@@ -22,13 +22,5 @@ class RegistrationDTO implements \App\Interfaces\DataTransferObjectInterface
             'phone' => $this->phone,
             'password' => $this->password,
         ];
-    }
-
-    /**
-     * @throws \JsonException
-     */
-    public function toJson(): string
-    {
-        return json_encode($this->toArray(), JSON_THROW_ON_ERROR);
     }
 }

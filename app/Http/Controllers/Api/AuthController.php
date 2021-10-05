@@ -27,7 +27,7 @@ class AuthController extends Controller
         );
     }
 
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request): JsonResponse
     {
         return $this->authService->login(
             $this->authMapper->mapLoginData($request)

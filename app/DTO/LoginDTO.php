@@ -2,9 +2,9 @@
 
 namespace App\DTO;
 
-use App\Interfaces\OnlyDTOAbstract;
+use App\Abstracts\DataTransferObjectAbstract;
 
-class LoginDTO extends OnlyDTOAbstract
+class LoginDTO extends DataTransferObjectAbstract
 {
     /**
      * @param string $email
