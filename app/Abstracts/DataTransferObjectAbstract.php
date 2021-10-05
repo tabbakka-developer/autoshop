@@ -3,6 +3,7 @@
 namespace App\Abstracts;
 
 use App\Interfaces\DataTransferObjectInterface;
+use Illuminate\Support\Facades\Log;
 
 abstract class DataTransferObjectAbstract implements DataTransferObjectInterface
 {
@@ -23,7 +24,15 @@ abstract class DataTransferObjectAbstract implements DataTransferObjectInterface
      */
     public function toJson(): string
     {
-        return json_encode($this->toArray(), JSON_THROW_ON_ERROR);
+        try {
+            $json = json_encode($this->toArray(), JSON_THROW_ON_ERROR);
+        } catch (\JsonException $e) {
+            Log::error($e);
+            $json = json_encode([
+                'message' => 'Cant serialize data'
+            ], JSON_THROW_ON_ERROR);
+        }
+        return $json;
     }
 
     public function only(array $keys): array
@@ -31,7 +40,7 @@ abstract class DataTransferObjectAbstract implements DataTransferObjectInterface
         $data = [];
         foreach ($keys as $key) {
             if (isset($this->{$key})) {
-                $data[] = $this->{$key};
+                $data[$key] = $this->{$key};
             }
         }
 

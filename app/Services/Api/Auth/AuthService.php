@@ -45,18 +45,24 @@ class AuthService
         }
 
         return response()->json([
-            'token' => $token,
-            'user' => $user->toJson()
+            'user' => $user->toArray(),
+            'token' => $token
         ]);
     }
 
     public function me()
     {
-
+        /** @var User $user */
+        $user = auth()->user();
+        $userDto = $this->authMapper->mapUser($user);
+        return response()->json([
+            'user' => $user->toArray()
+        ]);
     }
 
     public function logout()
     {
-
+        auth()->logout();
+        return response()->json([]);
     }
 }

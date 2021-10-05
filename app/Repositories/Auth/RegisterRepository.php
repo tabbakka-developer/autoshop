@@ -17,6 +17,7 @@ class RegisterRepository
         $user->name = $registrationDTO?->name;
         $user->phone = $registrationDTO->phone;
         $user->password = $registrationDTO->password;
+        $user->email = $registrationDTO->email;
         $user->save();
 
         return $user;

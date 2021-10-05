@@ -7,14 +7,14 @@ use App\Abstracts\DataTransferObjectAbstract;
 class LoginDTO extends DataTransferObjectAbstract
 {
     /**
-     * @param string $email
-     * @param string $phone
+     * @param string|null $email
+     * @param string|null $phone
      * @param string $password
      */
     public function __construct(
-        public string $email,
-        public string $phone,
-        public string $password
+        public string  $password,
+        public ?string $email = null,
+        public ?string $phone = null
     ) {}
 
     public function toArray(): array

@@ -36,9 +36,9 @@ class AuthMapper
     public function mapLoginData(LoginRequest $request): LoginDTO
     {
         return new LoginDTO(
+            $request->password,
             $request?->email,
-            $request?->phone,
-            $request->password
+            $request?->phone
         );
     }
 }

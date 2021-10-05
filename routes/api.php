@@ -14,9 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::namespace('api')->group(function () {
+Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
     Route::prefix('auth')->group(function () {
         Route::post('registration', "AuthController@registration");
+        Route::post('login', "AuthController@login");
+        Route::middleware(['auth:api'])->group(function () {
+            Route::get('me', "AuthController@me");
+            Route::post('logout', "AuthController@logout");
+        });
+    });
+
+    Route::prefix('ads')->group(function () {
+        Route::get('/', "AdsController@list");
     });
 });
 

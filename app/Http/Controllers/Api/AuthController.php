@@ -33,4 +33,14 @@ class AuthController extends Controller
             $this->authMapper->mapLoginData($request)
         );
     }
+
+    public function me()
+    {
+        return $this->authService->me();
+    }
+
+    public function logout()
+    {
+        return $this->authService->logout();
+    }
 }
