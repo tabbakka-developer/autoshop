@@ -6,7 +6,7 @@ use App\Models\CarMakers;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 
-class ParseCarsData extends Command
+class ParseMakers extends Command
 {
     /**
      * The name and signature of the console command.
