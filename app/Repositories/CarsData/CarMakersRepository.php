@@ -22,4 +22,9 @@ class CarMakersRepository
     {
         return CarMakers::all();
     }
+
+    public function findById(int $id)
+    {
+        return CarMakers::query()->find($id);
+    }
 }

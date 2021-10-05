@@ -27,6 +27,7 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
     Route::prefix('cars-data')->group(function () {
         Route::prefix('makers')->group(function () {
             Route::get('/', "CarMakersController@index");
+            Route::get('/{id}', "CarMakersController@getById");
         });
 
         Route::prefix('groups')->group(function () {
