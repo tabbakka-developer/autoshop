@@ -24,7 +24,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'email|required_without:phone',
+            'email' => 'email|required_without:phone|'.
+                'regex:/^[A-Za-z0-9][A-Za-z0-9\._-]*@[A-Za-z0-9][A-Za-z0-9_-]*(\.[A-Za-z0-9_-]+)+$/i',
             'phone' => 'string|required_without:email',
             'password' => 'required|min:6|max:16',
             'remember' => 'bool|nullable'

@@ -9,6 +9,7 @@ use App\Mappers\AuthMapper;
 use App\Services\Api\Auth\AuthService;
 use App\Services\Api\Auth\RegisterService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -28,6 +29,8 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        return $this->authService->
+        return $this->authService->login(
+            $this->authMapper->mapLoginData($request)
+        );
     }
 }
