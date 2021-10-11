@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\CheckRegistrationRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegistrationRequest;
+use App\Http\Resources\DefaultStatusResource;
 use App\Mappers\AuthMapper;
 use App\Services\Api\Auth\AuthService;
 use App\Services\Api\Auth\RegisterService;
@@ -42,5 +44,16 @@ class AuthController extends Controller
     public function logout()
     {
         return $this->authService->logout();
+    }
+
+    public function checkRegistration(CheckRegistrationRequest $request)
+    {
+        return new DefaultStatusResource(
+            $this->authService->checkUserRegistered(
+                $this->authMapper->mapCheckExistRequestToDTO(
+                    $request
+                )
+            )
+        );
     }
 }

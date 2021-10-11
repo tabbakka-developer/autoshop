@@ -18,6 +18,7 @@ Route::group(['middleware' => ['api'], 'namespace' => 'Api'], function () {
     Route::prefix('auth')->group(function () {
         Route::post('registration', "AuthController@registration");
         Route::post('login', "AuthController@login");
+        Route::post('check-user', "AuthController@checkRegistration");
         Route::middleware(['auth:api'])->group(function () {
             Route::get('me', "AuthController@me");
             Route::post('logout', "AuthController@logout");

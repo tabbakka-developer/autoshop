@@ -2,6 +2,7 @@
 
 namespace App\Services\Api\Auth;
 
+use App\DTO\EmailOrPhoneDTO;
 use App\DTO\LoginDTO;
 use App\Mappers\AuthMapper;
 use App\Models\User;
@@ -64,5 +65,18 @@ class AuthService
     {
         auth()->logout();
         return response()->json([]);
+    }
+
+    public function checkUserRegistered(EmailOrPhoneDTO $emailOrPhoneDTO): bool
+    {
+        if ($emailOrPhoneDTO->email) {
+            return (bool)$this->authRepository->getByEmail($emailOrPhoneDTO->email);
+        }
+
+        if ($emailOrPhoneDTO->phone) {
+            return (bool)$this->authRepository->getByPhoneNumber($emailOrPhoneDTO->phone);
+        }
+
+        return false;
     }
 }

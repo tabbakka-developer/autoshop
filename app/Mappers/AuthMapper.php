@@ -2,9 +2,11 @@
 
 namespace App\Mappers;
 
+use App\DTO\EmailOrPhoneDTO;
 use App\DTO\LoginDTO;
 use App\DTO\RegistrationDTO;
 use App\DTO\UserDTO;
+use App\Http\Requests\Auth\CheckRegistrationRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegistrationRequest;
 use App\Models\User;
@@ -37,6 +39,14 @@ class AuthMapper
     {
         return new LoginDTO(
             $request->password,
+            $request?->email,
+            $request?->phone
+        );
+    }
+
+    public function mapCheckExistRequestToDTO(CheckRegistrationRequest $request): EmailOrPhoneDTO
+    {
+        return new EmailOrPhoneDTO(
             $request?->email,
             $request?->phone
         );
