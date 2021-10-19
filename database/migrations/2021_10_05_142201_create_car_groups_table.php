@@ -16,7 +16,6 @@ class CreateCarGroupsTable extends Migration
         Schema::create('car_groups', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('title_formatted');
             $table->string('alias');
             $table->unsignedBigInteger('car_maker_id');
             $table->foreign('car_maker_id')
