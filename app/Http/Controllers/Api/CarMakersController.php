@@ -28,7 +28,7 @@ class CarMakersController extends Controller
     public function getById(GetByIdRequest $request)
     {
         return $this->carsDataMapper->mapSingleCarMaker(
-            $this->carsDataService->getById(
+            $this->carsDataService->getMakerById(
                 $this->carsDataMapper->mapGetByIdRequest($request)
             )
         );
